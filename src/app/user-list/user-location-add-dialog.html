@@ -1,0 +1,24 @@
+<div mat-dialog-content xmlns="http://www.w3.org/1999/html">
+<h2> <span style="color: #c9302c">{{data.name}}</span> kullanıcısı için lokasyon ataması.</h2>
+  <alert></alert>
+  <form *ngIf="showUserLocation" class="formgroup" (ngSubmit)="onSubmit()" #LocationUserAdd="ngForm">
+    <div  class="form-group">
+      <label for="locadd">Kullanıcının bulunabileceği Lokasyon seçimini yap.</label>
+      <select class="form-control" id="locadd"
+              required
+              [(ngModel)]="location" name="locadd"
+              #locationselect="ngModel">
+        <option *ngFor="let location of locationList" [value]="location._id">
+          {{location.name}} -----> {{location.detail}}</option>
+      </select>
+
+      <div [hidden]="locationselect.valid || locationselect.pristine" class="alert alert-danger">
+        Lokasyon seçimi zorunlu
+      </div>
+    </div>
+    <div class="btn-toolbar">
+      <button type="submit" class="btn btn-success" [disabled]="!LocationUserAdd.form.valid">Lokasyonu Ekle</button>
+      <button type="button" class="btn btn-default" (click)="onNoClick()">Kapat</button>
+    </div>
+  </form>
+</div>

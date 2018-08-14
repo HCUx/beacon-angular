@@ -1,0 +1,25 @@
+<div mat-dialog-content xmlns="http://www.w3.org/1999/html">
+<h2> <span style="color: #c9302c">{{data.name}}</span> Lokasyonu için beacon ataması.</h2>
+  <h6> Detay: <span style="color: #c9302c">{{data.detail}}</span></h6>
+  <alert></alert>
+  <form *ngIf="showBeaconLocation" class="formgroup" (ngSubmit)="onSubmit()" #LocationBeaconAdd="ngForm">
+    <div  class="form-group">
+      <label for="locadd">Lokasyona eklenecek Beacon seçimini yap.</label>
+      <select class="form-control" id="locadd"
+              required
+              [(ngModel)]="beacon" name="locadd"
+              #beaconselect="ngModel">
+        <option *ngFor="let beacon of beaconList" [value]="beacon._id">
+          {{beacon.name}} -----> {{beacon.uuid}}</option>
+      </select>
+
+      <div [hidden]="beaconselect.valid || beaconselect.pristine" class="alert alert-danger">
+        iBeacon seçimi zorunlu
+      </div>
+    </div>
+    <div class="btn-toolbar">
+      <button type="submit" class="btn btn-success" [disabled]="!LocationBeaconAdd.form.valid">Lokasyona Ekle</button>
+      <button type="button" class="btn btn-default" (click)="onNoClick()">Kapat</button>
+    </div>
+  </form>
+</div>

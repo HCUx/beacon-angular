@@ -1,0 +1,39 @@
+<div mat-dialog-content xmlns="http://www.w3.org/1999/html">
+  <h2> <span style="color: #c9302c">{{data.name}}</span> kayıtlı olduğu lokasyonlar</h2>
+  <h6> UUID: <span style="color: #c9302c">{{data.uuid}}</span></h6>
+  <div *ngIf="showBeaconLocation" style="alignment: right" class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Lokasyon Listesi</h4>
+            <p class="category">Sistemde kayıtlı iBeacon'a ait tüm Lokasyonları burada görebilirsiniz.</p>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>İsim</th>
+                  <th>Detay</th>
+                  <th>ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let singledata of locationList">
+                  <td>{{singledata.sonuc[0].name}}</td>
+                  <td>{{singledata.sonuc[0].detail}}</td>
+                  <td>{{singledata.sonuc[0]._id}}</td>
+                  <td><button (click)="deleteBeaconLocation(singledata._id, singledata.sonuc[0]._id)"
+                              class="btn btn-danger">Lokasyonu Kaldır</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button style="background-color: #9dff0f" mat-button (click)="onNoClick()">Kapat</button>
+</div>

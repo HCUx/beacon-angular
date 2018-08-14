@@ -1,0 +1,9 @@
+<div mat-dialog-content xmlns="http://www.w3.org/1999/html">
+  <p>Silme işlemini </p>
+  <h3> <span style="color: #c9302c">{{data.name}}</span> isimli kullanıcı için onayla?</h3>
+</div>
+<div mat-dialog-actions>
+  <button style="background-color: #8c8c8c" mat-button (click)="onNoClick()">Hayır</button>
+  <button style="background-color: #ffb2a4;" mat-button [mat-dialog-close]="data.name"
+          cdkFocusInitial>Evet Sil</button>
+</div>

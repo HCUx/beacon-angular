@@ -1,0 +1,40 @@
+<div mat-dialog-content xmlns="http://www.w3.org/1999/html">
+  <h2> <span style="color: #c9302c">{{data.name}}</span> kayıtlı olan iBeaconlar</h2>
+  <h6> Detay: <span style="color: #c9302c">{{data.detail}}</span></h6>
+  <div *ngIf="showBeaconLocation" style="alignment: right" class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">iBeacon Listesi</h4>
+            <p class="category">Sistemde kayıtlı Lokasyon'a ait tüm iBeaconları burada görebilirsiniz.</p>
+          </div>
+          <div class="content table-responsive table-full-width">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>UUID</th>
+                  <th>İsim</th>
+                  <th>Detay</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let singledata of beaconList | paginate: { itemsPerPage: 5, currentPage: p }">
+                  <td>{{singledata.uuid}}</td>
+                  <td>{{singledata.name}}</td>
+                  <td>{{singledata.detail}}</td>
+                  <!--<td><button (click)="deleteBeaconLocation(singledata._id)"
+                              class="btn btn-danger">iBeacon'ı Kaldır</button></td>-->
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button style="background-color: #9dff0f" mat-button (click)="onNoClick()">Kapat</button>
+</div>
